@@ -1,0 +1,30 @@
+{
+    "manifest_version": 2,
+
+    "name": "Millenium TV Tools",
+    "description": "Extension proposant divers outils pour les webtvs Millenium.org",
+    "version": "1.0",
+    "author": "Romain Pichot",
+
+    "background": {
+        "scripts": ["background.js"],
+        "persistent": false
+    },
+
+    "permissions": ["declarativeContent", "storage"],
+
+    "content_scripts": [
+        {
+            "matches": ["http://*.mnium.org/player.html*", "https://*.mnium.org/player.html*"],
+            "js": ["content-script.js"],
+            "run_at": "document_end",
+            "all_frames": true
+        }
+    ],
+
+    "page_action": {
+        "default_title": "Millenium TV Tools",
+        "default_icon": "images/icon.png",
+        "default_popup": "popup.html"
+    }
+}
