@@ -24,7 +24,10 @@
 
     "page_action": {
         "default_title": "Millenium TV Tools",
-        "default_icon": "images/icon.png",
+        "default_icon": {
+            "19": "images/19.png",
+            "38": "images/38.png"
+        },
         "default_popup": "popup.html"
     }
 }
