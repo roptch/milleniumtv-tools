@@ -5,8 +5,29 @@
         <link rel="stylesheet" type="text/css" href="popup.css" />
     </head>
     <body>
-        <input id="unblockquest" type="checkbox">
-        <label for="unblockquest">Cacher UnblockQuest</label>
+        <table id="content">
+            <tr>
+                <td id="title" colspan="2">Millenium TV Tools <sup>beta</sup></td>
+            </tr>
+
+            <tr>
+                <td><label for="unblockquest">Cacher UnblockQuest</label></td>
+                <td><input id="unblockquest" type="checkbox"></td>
+            </tr>
+
+            <tr>
+                <td><label for="quality">Qualite par defaut</label></td>
+                <td>
+                    <select id="quality">
+                        <option value="1080">1080</option>
+                        <option value="720">720</option>
+                        <option value="480">480</option>
+                        <option value="380">380</option>
+                        <option value="240">240</option>
+                    </select>
+                </td>
+            </tr>
+        </table>
 
         <script type=text/javascript src="popup.js"></script>
     </body>

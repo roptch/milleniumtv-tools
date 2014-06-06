@@ -4,9 +4,24 @@
 }
 
 html, body {
-    width: 200px;
+    width: 300px;
 }
 
 body {
     padding: 5px;
+}
+
+#content {
+    width: 100%;
+    font-size: 12px;
+}
+
+#content tr td {
+    text-align: center;
+}
+
+#title {
+    font-size: 15px;
+    font-weight: bold;
+    border-bottom: solid 1px black;
 }
