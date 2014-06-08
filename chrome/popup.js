@@ -23,8 +23,21 @@
         }
     }
 
+    function manageVolume() {
+        var volumeRange = document.getElementById('volume');
+
+        chrome.storage.sync.get({'volume': 0}, function(data) {
+            volumeRange.value = data.volume;
+        });
+
+        volumeRange.onchange = function() {
+            chrome.storage.sync.set({'volume': volumeRange.value});
+        }
+    }
+
     window.onload = function() {
         manageUnblockQuest();
         manageQuality();
+        manageVolume();
     }
 })();
