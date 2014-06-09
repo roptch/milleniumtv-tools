@@ -9,12 +9,14 @@ html, body {
 
 body {
     padding: 5px;
+    overflow: hidden;
 }
 
 #content {
     width: 90%;
     margin: auto;
     font-size: 12px;
+    overflow: hidden;
 }
 
 #content tr td {
