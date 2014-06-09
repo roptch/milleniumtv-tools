@@ -66,55 +66,57 @@
 
     function manageVolume(volume) {
         if (getUrlParam(document.URL, 'volume') != (volume * 10) - 1)
-            window.location.href = replaceParamInUrl(document.URL, 'volume', (volume * 10) - 1);
+            document.location.href = replaceParamInUrl(document.URL, 'volume', (volume * 10) - 1);
+    }
+
+    function manageQuality(quality) {
+        execWhenClassFound('available', function(elems) {
+            var qualityList = ['1080', '720', '480', '380', '240'];
+            var availableQualityList = [];
+            var activeQuality;
+            var selectedQuality;
+
+            // Getting all available quality labels in variable "availableQualityList"
+            for (var i = 0; i < elems.length; ++i) {
+                var classList = elems[i].className.split(' ');
+                var currentQuality = classList[1].split('-')[2];
+
+                // Saving the current quality in "activeQuality"
+                if (classList.indexOf('active') != -1)
+                    activeQuality = currentQuality;
+
+                availableQualityList.push(currentQuality);
+            }
+
+            var mergedQualityList = [];
+            for (var i = 0; i < qualityList.length; ++i) {
+                if (availableQualityList.indexOf(qualityList[i]) != -1)
+                    mergedQualityList.push(qualityList[i]);
+                else
+                    mergedQualityList.push(null);
+            }
+
+            var i = qualityList.indexOf(quality);
+            while (i < mergedQualityList.length && mergedQualityList[i] == null)
+                ++i;
+
+            if (i == mergedQualityList.length)
+                selectedQuality = availableQualityList[availableQualityList.length - 1];
+            else
+                selectedQuality = mergedQualityList[i];
+
+            if (selectedQuality == activeQuality)
+                return ;
+
+            window.location.href = replaceParamInUrl(document.URL, 'quality', selectedQuality);
+        });
     }
 
     window.onload = function() {
         chrome.storage.sync.get({'quality': 720, 'hideUnblockQuest': true, 'volume': 0}, function(data) {
             manageUnblockQuest(data.hideUnblockQuest);
-
             manageVolume(data.volume);
-
-            execWhenClassFound('available', function(elems) {
-                var qualityList = ['1080', '720', '480', '380', '240'];
-                var availableQualityList = [];
-                var activeQuality;
-                var selectedQuality;
-
-                // Getting all available quality labels in variable "availableQualityList"
-                for (var i = 0; i < elems.length; ++i) {
-                    var classList = elems[i].className.split(' ');
-                    var quality = classList[1].split('-')[2];
-
-                    // Saving the current quality in "activeQuality"
-                    if (classList.indexOf('active') != -1)
-                        activeQuality = quality;
-
-                    availableQualityList.push(quality);
-                }
-
-                var mergedQualityList = [];
-                for (var i = 0; i < qualityList.length; ++i) {
-                    if (availableQualityList.indexOf(qualityList[i]) != -1)
-                        mergedQualityList.push(qualityList[i]);
-                    else
-                        mergedQualityList.push(null);
-                }
-
-                var i = qualityList.indexOf(data.quality);
-                while (i < mergedQualityList.length && mergedQualityList[i] == null)
-                    ++i;
-
-                if (i == mergedQualityList.length)
-                    selectedQuality = availableQualityList[availableQualityList.length - 1];
-                else
-                    selectedQuality = mergedQualityList[i];
-
-                if (selectedQuality == activeQuality)
-                    return ;
-
-                window.location.href = replaceParamInUrl(document.URL, 'quality', selectedQuality);
-            });
+            manageQuality(data.quality);
         });
     }
 })();
