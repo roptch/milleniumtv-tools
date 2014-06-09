@@ -3,7 +3,7 @@
 
     "name": "Millenium TV Tools",
     "description": "Extension proposant divers outils pour les webtvs Millenium.org",
-    "version": "0.1",
+    "version": "0.1.1",
     "author": "Romain Pichot",
 
     "icons": {
