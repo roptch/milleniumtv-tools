@@ -1,7 +1,8 @@
 Millenium TV Tools
 =================
 
-Extension pour navigateurs web proposant divers outils pour les webtvs Millenium.org
+Extension pour navigateurs web proposant divers outils pour les webtvs Millenium.org<br />
+[Installer l'application à partir du Chrome Web Store](https://chrome.google.com/webstore/detail/millenium-tv-tools/noknenadcdjepihcjglhdbefolheeife)
 
 Fonctionnalités
 =================
