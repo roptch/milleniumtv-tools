@@ -56,7 +56,7 @@
 
     function manageUnblockQuest(isHidden) {
         if (isHidden === true) {
-            execWhenClassFound('UnblockQuest-v2', function(layers) {
+            execWhenClassFound('UnblockQuest2', function(layers) {
                 for (i = 0; i < layers.length; ++i) {
                     layers[i].style.display = 'none';
                 }
